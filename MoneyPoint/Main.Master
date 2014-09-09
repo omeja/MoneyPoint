@@ -61,26 +61,29 @@
             <tr>
                 <td class="style3">
                     <asp:TreeView ID="TreeView1" runat="server" Height="347px" 
-                        ImageSet="Simple" BorderColor="Maroon" 
-                        Font-Size="X-Large" style="font-size: xx-large" Width="172px">
+                        ImageSet="Simple" 
+                        Font-Size="X-Large" style="font-size: xx-large" Width="172px" 
+                        BorderStyle="None">
                         <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
                         <Nodes>
                             <asp:TreeNode Text="Customer" Value="Customer">
-                                <asp:TreeNode Text="Create Customer" Value="Create Customer"></asp:TreeNode>
+                                <asp:TreeNode Text="Create Customer" Value="Create Customer" 
+                                    NavigateUrl="~/frmCustomer.aspx"></asp:TreeNode>
                                 <asp:TreeNode Text="View Customers" Value="View Customers"></asp:TreeNode>
                             </asp:TreeNode>
                             <asp:TreeNode Text="Account" Value="Acccount">
-                                <asp:TreeNode Text="Create Account" Value="Create Account"></asp:TreeNode>
+                                <asp:TreeNode Text="Create Account" Value="Create Account" 
+                                    NavigateUrl="~/frmAccount.aspx"></asp:TreeNode>
                                 <asp:TreeNode Text="View Accounts" Value="View Accounts"></asp:TreeNode>
                             </asp:TreeNode>
                             <asp:TreeNode Text="Loans" Value="Loans">
-                                <asp:TreeNode Text="New Loan" Value="New Loan"></asp:TreeNode>
+                                <asp:TreeNode Text="New Loan" Value="New Loan" NavigateUrl="~/frmLoan.aspx"></asp:TreeNode>
                             </asp:TreeNode>
                         </Nodes>
                         <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" 
                             HorizontalPadding="0px" NodeSpacing="10px" VerticalPadding="0px" />
                         <ParentNodeStyle Font-Bold="False" />
-                        <RootNodeStyle Font-Bold="True" ForeColor="#006600" />
+                        <RootNodeStyle Font-Bold="True" ForeColor="#009933" />
                         <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" 
                             HorizontalPadding="0px" VerticalPadding="0px" />
                     </asp:TreeView>

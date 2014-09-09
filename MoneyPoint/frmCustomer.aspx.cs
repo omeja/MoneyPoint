@@ -4,31 +4,39 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MoneyPoint
 {
     public partial class frmCustomer : System.Web.UI.Page
     {
+
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            //Random r = new Random();
+            //int n = r.Next();
+         //   billno = billno + 1;
+           // txtcusno.Text = n.ToString();
+            Label6.Text = "";
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+       
+
+        protected void Button1_Click1(object sender, EventArgs e)
         {
             try
             {
 
                 //
-                string regno = this.txtregno.Text;
-                string fname = this.txtfname.Text;
-                string lname = this.txtlname.Text;
-                string dob = this.txtdob.Text;
-                string dis = this.txtdis.Text;
-                string nat = this.txtnat.Text;
-                string cls = this.txtcls.Text;
-                string term = this.cboterm.Text;
-                string yr = this.txtyr.Text;
+                // string cusno = this.txtcusno.Text;
+                string custitle = this.cbotitle.Text;
+                string cusname = this.txtcusname.Text;
+                string cusadd = this.txtaddress.Text;
+                string custel = this.txttel.Text;
+
                 //
 
 
@@ -39,48 +47,62 @@ namespace MoneyPoint
                 string constring = System.Configuration.ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
                 SqlConnection con = new SqlConnection(constring);
 
-                SqlCommand command = new SqlCommand("spaddregister", con);
+                SqlCommand command = new SqlCommand("spaddcustomer", con);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@regno", SqlDbType.VarChar).Value = regno;
-                command.Parameters.Add("@fname", SqlDbType.VarChar).Value = fname;
-                command.Parameters.Add("@lname", SqlDbType.VarChar).Value = lname;
-                command.Parameters.Add("@birthdate", SqlDbType.Date).Value = dob;
-                command.Parameters.Add("@district", SqlDbType.VarChar).Value = dis;
-                command.Parameters.Add("@nationality", SqlDbType.VarChar).Value = nat;
-                command.Parameters.Add("@class", SqlDbType.VarChar).Value = cls;
-                command.Parameters.Add("@term", SqlDbType.VarChar).Value = term;
-                command.Parameters.Add("@year", SqlDbType.VarChar).Value = yr;
-
+               // command.Parameters.Add("@customernumber", SqlDbType.VarChar).Value = txtcusno.Text;
+                command.Parameters.Add("@title", SqlDbType.VarChar).Value = custitle.ToUpper();
+                command.Parameters.Add("@customername", SqlDbType.VarChar).Value = cusname.ToUpper();
+                command.Parameters.Add("@address", SqlDbType.VarChar).Value = cusadd.ToUpper();
+                command.Parameters.Add("@contact", SqlDbType.VarChar).Value = custel.ToUpper();
+              
 
                 con.Open();
                 int rows = command.ExecuteNonQuery();
                 con.Close();
 
                 // clear fields
-                // this.txtcode.Text = "";
-                //this.cbocountry.Text = "";
-                //this.txttitle.Text = "";
-                ////this.cbocategory.SelectedItem.Value= "";
-                //this.txtdetails.Text = "";
-                //this.txtbudget.Text = "";
-                //this.txtdt.Text = "";
+               // this.txtcusno.Text = "";
+                this.cbotitle.Text = "";
+                this.txtcusname.Text = "";
+                this.txtaddress.Text= "";
+                this.txttel.Text = "";
+
+                //
+                SqlCommand command2 = new SqlCommand("spgettop", con);
+                command2.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+                //  int rows = command.ExecuteNonQuery();
+                SqlDataReader rdr = null;
+                rdr = command2.ExecuteReader();
 
 
+              
+                //
+                while (rdr.Read())
+                {
 
-                //if (rows == 1)
-                //{
+                    string x = rdr[0].ToString();
 
-                //    MessageBox.Show("Data Saved Succesfully");
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Data FAILED to Save!!");
-                //} 
+                    if (rows == 1)
+                    {
+                        Label6.Text = "Customer Saved Succesfully with Customer Number:"+""+x ;
+                    }
+                    else
+                    {
+                        Label6.Text = "Error";
+                    }
+                }
+
+                con.Close();
             }
             catch (Exception ex)
             {
                 throw;
             }
         }
+
+      
+      
     }
 }
