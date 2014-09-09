@@ -1,0 +1,5 @@
+D:\Projects\MoneyLend\MoneyPoint\MoneyPoint\bin\MoneyPoint.dll
+D:\Projects\MoneyLend\MoneyPoint\MoneyPoint\bin\MoneyPoint.pdb
+D:\Projects\MoneyLend\MoneyPoint\MoneyPoint\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\MoneyLend\MoneyPoint\MoneyPoint\obj\Debug\MoneyPoint.dll
+D:\Projects\MoneyLend\MoneyPoint\MoneyPoint\obj\Debug\MoneyPoint.pdb
